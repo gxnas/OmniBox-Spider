@@ -315,7 +315,6 @@ async function play(params, context) {
           return {
             parse: 0,
             urls: [{ name: "播放", url: playerData.url }],
-            flag,
             header: { "User-Agent": UA, Referer: playUrl },
           };
         }
@@ -328,7 +327,6 @@ async function play(params, context) {
       return {
         parse: 0,
         urls: [{ name: "播放", url: m3u8Match[1] }],
-        flag,
         header: { "User-Agent": UA, Referer: playUrl },
       };
     }
@@ -338,12 +336,11 @@ async function play(params, context) {
       parse: 1,
       url: playUrl,
       urls: [{ name: "播放页", url: playUrl }],
-      flag,
       header: playHeaders,
     };
   } catch (e) {
     await OmniBox.log("error", `[耐视点播][play] ${e.message}`);
-    return { parse: 0, urls: [], flag: String(params.flag || ""), header: {} };
+    return { parse: 0, urls: [], header: {} };
   }
 }
 

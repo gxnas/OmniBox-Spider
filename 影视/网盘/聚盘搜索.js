@@ -1063,7 +1063,6 @@ async function play(params, context) {
       const url = text(meta.shareURL || "");
       return {
         urls: [{ name: meta.epName || "播放", url }],
-        flag: "raw",
         header: { "User-Agent": UA, "Referer": `${BASE}/` },
         parse: /\.(m3u8|mp4|flv|webm)(\?|$)/i.test(url) ? 0 : 1
       };
@@ -1167,7 +1166,6 @@ async function play(params, context) {
 
     return {
       urls,
-      flag: routeType,
       header: info?.header || { "User-Agent": UA, "Referer": `${BASE}/` },
       parse: 0,
       danmaku: Array.isArray(danmaku) ? danmaku : []
@@ -1176,7 +1174,6 @@ async function play(params, context) {
     await OmniBox.log("error", `[dyuzi] play 异常: ${e.message}`);
     return {
       urls: [],
-      flag: "",
       header: { "User-Agent": UA, "Referer": `${BASE}/` },
       parse: 1,
       danmaku: []

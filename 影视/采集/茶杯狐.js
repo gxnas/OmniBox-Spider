@@ -736,7 +736,7 @@ async function play(params = {}, context = {}) {
     }
 
     const playId = absoluteUrl(rawPlayId);
-    if (!playId) return { parse: 1, url: "", urls: [], header: {}, flag: "cupfox" };
+    if (!playId) return { parse: 1, url: "", urls: [], header: {} };
 
     const pageHeaders = {
       "User-Agent": UA,
@@ -809,9 +809,7 @@ async function play(params = {}, context = {}) {
               url: decodedUrl,
               urls: [{ name: "播放", url: decodedUrl }],
               header: finalHeaders,
-              headers: finalHeaders,
-              flag: "cupfox",
-            };
+              headers: finalHeaders};
           }
           await OmniBox.log("warn", `[茶杯狐][play] api decode invalid code=${apiJson.code} mode=${apiJson.data.urlmode || 0} type=${apiJson.data.type || ""} url=${String(decodedUrl || "").slice(0, 200)} raw=${String(apiJson.data.url || "").slice(0, 200)}`);
         } else {
@@ -853,9 +851,8 @@ async function play(params = {}, context = {}) {
               url: sniffed.url,
               urls: [{ name: "播放", url: sniffed.url }],
               header: sniffed.header || sniffed.headers || target.headers || {},
-              headers: sniffed.header || sniffed.headers || target.headers || {},
-              flag: "cupfox",
-            };
+              headers: sniffed.header || sniffed.headers || target.headers || {}
+  };
           }
           await OmniBox.log("warn", `[茶杯狐][play] sniff empty/invalid target=${target.name} url=${String(sniffed?.url || "")}`);
         } catch (sniffError) {
@@ -869,9 +866,7 @@ async function play(params = {}, context = {}) {
         url: playId,
         urls: [{ name: "播放页", url: playId }],
         header: fallbackHeaders,
-        headers: fallbackHeaders,
-        flag: "cupfox",
-      };
+        headers: fallbackHeaders};
     })();
 
     const metadataPromise = (async () => {
@@ -989,6 +984,6 @@ async function play(params = {}, context = {}) {
     return playResult;
   } catch (e) {
     await OmniBox.log("error", `[茶杯狐][play] ${e.message}`);
-    return { parse: 1, url: "", urls: [], header: {}, flag: "cupfox" };
+    return { parse: 1, url: "", urls: [], header: {} };
   }
 }

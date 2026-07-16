@@ -442,7 +442,6 @@ async function play(params) {
     if (sniffed && Array.isArray(sniffed.urls) && sniffed.urls.length) {
       return {
         urls: sniffed.urls,
-        flag: sniffed.flag || 'play',
         parse: sniffed.parse ?? 0,
         header: sniffed.headers || sniffed.header || {
           'User-Agent': UA,
@@ -454,7 +453,6 @@ async function play(params) {
     if (sniffed && sniffed.url && isHttpUrl(sniffed.url)) {
       return {
         urls: [{ name: '默认线路', url: sniffed.url }],
-        flag: sniffed.flag || 'play',
         parse: sniffed.parse ?? 0,
         header: sniffed.headers || sniffed.header || {
           'User-Agent': UA,

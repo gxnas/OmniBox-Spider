@@ -1376,7 +1376,7 @@ async function detail(params, context) {
 async function play(params, context) {
   try {
     const playId = String(params.playId || params.id || params.url || "").trim();
-    if (!playId) return { parse: 0, url: "", urls: [], header: {}, headers: {}, flag: "guangya" };
+    if (!playId) return { parse: 0, url: "", urls: [], header: {}, headers: {} };
 
     if (playId.startsWith("page|||")) {
       const pageUrl = decodeURIComponent(playId.slice("page|||".length));
@@ -1387,9 +1387,7 @@ async function play(params, context) {
         url: pageUrl,
         urls: [{ name: "打开详情页", url: pageUrl }],
         header,
-        headers: header,
-        flag: "guangya-page",
-      };
+        headers: header};
     }
 
     if (playId.startsWith("share|||")) {
@@ -1401,9 +1399,7 @@ async function play(params, context) {
         url: shareUrl,
         urls: [{ name: "打开分享页", url: shareUrl }],
         header,
-        headers: header,
-        flag: "guangya-share",
-      };
+        headers: header};
     }
 
     const meta = parseSharePlayId(playId);
@@ -1423,9 +1419,8 @@ async function play(params, context) {
         url: downloadUrl,
         urls: [{ name: meta.episodeName || meta.fileName || "播放", url: downloadUrl }],
         header: {},
-        headers: {},
-        flag: "guangya-share-download",
-      };
+        headers: {}
+  };
     } catch (error) {
       await OmniBox.log("warn", `[光鸭][play] 免登录下载失败: ${error.message}`);
     }
@@ -1439,9 +1434,8 @@ async function play(params, context) {
         url: playUrl,
         urls: [{ name: meta.episodeName || meta.fileName || "播放", url: playUrl }],
         header: {},
-        headers: {},
-        flag: "guangya-pan-auth",
-      };
+        headers: {}
+  };
     } catch (error) {
       await OmniBox.log("warn", `[光鸭][play] 授权播放失败: ${error.message}`);
     }
@@ -1453,9 +1447,7 @@ async function play(params, context) {
       url: shareUrl,
       urls: [{ name: meta.episodeName || meta.fileName || "打开分享页", url: shareUrl }],
       header: sharePageHeader,
-      headers: sharePageHeader,
-      flag: "guangya-share-fallback",
-    };
+      headers: sharePageHeader};
   } catch (error) {
     await OmniBox.log("error", `[光鸭][play] ${error.message}`);
     return {
@@ -1464,8 +1456,7 @@ async function play(params, context) {
       url: "",
       urls: [],
       header: {},
-      headers: {},
-      flag: "guangya-error",
-    };
+      headers: {}
+  };
   }
 }

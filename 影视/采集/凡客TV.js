@@ -220,8 +220,7 @@ function _buildDirectResult(urls, referer, flag = "fktv") {
     url: mappedUrls.length === 1 ? mappedUrls[0].url : undefined,
     urls: mappedUrls,
     header: headers,
-    headers,
-    flag
+    headers
   };
 }
 
@@ -236,8 +235,7 @@ function _buildFallback(pageUrl, name = "FKTV 接口未返回可播地址") {
     url: pageUrl,
     urls: [{ name, url: pageUrl }],
     header: headers,
-    headers,
-    flag: "sniff"
+    headers
   };
 }
 
@@ -621,9 +619,7 @@ async function play(params) {
           url: sniff.url,
           urls: [{ name: meta?.line_name || "嗅探播放", url: sniff.url }],
           header: sniff.header || { "User-Agent": UA, "Referer": pageUrl, "Origin": BASE_URL },
-          headers: sniff.header || { "User-Agent": UA, "Referer": pageUrl, "Origin": BASE_URL },
-          flag: "sniff"
-        };
+          headers: sniff.header || { "User-Agent": UA, "Referer": pageUrl, "Origin": BASE_URL }};
         await _log("info", "play 使用 sniff 结果返回", result);
         return result;
       }
@@ -641,7 +637,7 @@ async function play(params) {
     return fallback;
   } catch (e) {
     await _log("error", "play 异常", { message: e.message, stack: e.stack });
-    return { parse: 0, urls: [], url: "", flag: "fktv", header: {}, headers: {} };
+    return { parse: 0, urls: [], url: "", header: {}, headers: {} };
   }
 }
 

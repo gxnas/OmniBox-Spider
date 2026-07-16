@@ -155,7 +155,6 @@ async function sniffNoVideoPlay(playUrl) {
       await logInfo(`嗅探成功 ${playUrl}`);
       return {
         urls: [{ name: "嗅探线路", url: sniffed.url }],
-        flag: "NO视频",
         parse: 0,
         header: sniffed.header || {
           Referer: playUrl,
@@ -339,7 +338,7 @@ async function play(params, context) {
     const pkey = meta.pkey || "";
     const detailUrl = meta.detailUrl || "";
     if (!vid || !pkey) {
-      return { urls: [], flag: "NO视频", parse: 1 };
+      return { urls: [], parse: 1 };
     }
 
     const sniffUrl = detailUrl || `${HOST}/movie/${meta.videoId || ""}.html`;
@@ -353,15 +352,13 @@ async function play(params, context) {
 
     return {
       urls: [{ name: meta.title || "NO视频", url: sniffUrl }],
-      flag: "NO视频",
       parse: 1,
       header: {
         Referer: sniffUrl,
-        "User-Agent": UA,
-      },
-    };
+        "User-Agent": UA
+      }};
   } catch (e) {
     await logError(`play 异常: ${e.message}`);
-    return { urls: [], flag: "NO视频", parse: 1 };
+    return { urls: [], parse: 1 };
   }
 }

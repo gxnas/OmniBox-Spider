@@ -453,7 +453,7 @@ async function play(params, context = {}) {
   const flag = params.flag || "";
 
   if (!playId) {
-    return { urls: [], parse: 1, header: {}, flag };
+    return { urls: [], parse: 1, header: {} };
   }
 
   const idParts = playId.split("_");
@@ -461,9 +461,8 @@ async function play(params, context = {}) {
     return {
       urls: [{ name: "播放", url: playId }],
       parse: /\.(m3u8|mp4|flv)$/i.test(playId) ? 0 : 1,
-      header: {},
-      flag,
-    };
+      header: {}
+  };
   }
 
   const avid = idParts[0];
@@ -563,9 +562,7 @@ async function play(params, context = {}) {
     return {
       urls: [{ name: "播放", url: playId }],
       parse: 1,
-      header: headers,
-      flag,
-    };
+      header: headers};
   }
 
   availableQualities.sort((a, b) => b.qn - a.qn);
@@ -581,11 +578,9 @@ async function play(params, context = {}) {
     header: {
       "User-Agent": headers["User-Agent"],
       Referer: headers.Referer,
-      Origin: headers.Origin,
+      Origin: headers.Origin
     },
-    flag,
-    danmaku: [{ name: "B站弹幕", url: `https://api.bilibili.com/x/v1/dm/list.so?oid=${cid}` }],
-  };
+    danmaku: [{ name: "B站弹幕", url: `https://api.bilibili.com/x/v1/dm/list.so?oid=${cid}` }]};
 
   if (availableQualities[0]?.audioUrl) {
     response.extra = { audio: availableQualities[0].audioUrl };

@@ -172,14 +172,12 @@ async function play(params, context) {
     await logInfo(`[play] resolved=${finalUrl}`);
     return {
       parse: 0,
-      flag,
       header: {
         Referer: `${SITE}/`,
         Origin: SITE,
-        "User-Agent": UA,
+        "User-Agent": UA
       },
-      urls: [{ name: payload.name || "播放", url: finalUrl }],
-    };
+      urls: [{ name: payload.name || "播放", url: finalUrl }]};
   } catch (error) {
     await logError(`[play] 失败: ${error.message}`);
     return emptyPlay(String(params?.flag || "乌云影视"));
@@ -534,7 +532,7 @@ function emptyPage(page) {
 }
 
 function emptyPlay(flag) {
-  return { parse: 0, flag, urls: [] };
+  return { parse: 0, urls: [] };
 }
 
 function safeJson(value) {

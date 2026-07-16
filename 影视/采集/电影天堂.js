@@ -1170,7 +1170,7 @@ async function play(params) {
         }
 
         let urlsResult = [{ name: "播放", url: resolvedUrl }];
-        let playResponse = { urls: urlsResult, flag: flag, header: resolvedHeader, parse: parse };
+        let playResponse = { urls: urlsResult, header: resolvedHeader, parse: parse };
         if (DANMU_API) {
             let fileName = "";
             if (vodName) {
@@ -1230,6 +1230,6 @@ async function play(params) {
         return playResponse;
     } catch (error) {
         OmniBox.log("error", `获取播放地址失败: ${error.message}`);
-        return { urls: [], flag: params.flag || "", header: {} };
+        return { urls: [], header: {} };
     }
 }

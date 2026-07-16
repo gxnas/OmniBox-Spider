@@ -560,7 +560,7 @@ async function play(params, context = {}) {
   const flag = params.flag || "";
 
   if (!playId) {
-    return { urls: [], parse: 1, header: {}, flag };
+    return { urls: [], parse: 1, header: {} };
   }
 
   let vodName = "";
@@ -578,9 +578,8 @@ async function play(params, context = {}) {
     return {
       urls: [{ name: "播放", url: playId }],
       parse: /\.(m3u8|mp4|flv)$/i.test(playId) ? 0 : 1,
-      header: {},
-      flag,
-    };
+      header: {}
+  };
   }
 
   const avid = idParts[0];
@@ -680,9 +679,7 @@ async function play(params, context = {}) {
     return {
       urls: [{ name: "播放", url: playId }],
       parse: 1,
-      header: headers,
-      flag,
-    };
+      header: headers};
   }
 
   availableQualities.sort((a, b) => b.qn - a.qn);
@@ -698,10 +695,8 @@ async function play(params, context = {}) {
     header: {
       "User-Agent": headers["User-Agent"],
       Referer: headers.Referer,
-      Origin: headers.Origin,
-    },
-    flag,
-  };
+      Origin: headers.Origin
+    }};
 
   // 兼容保留：如果是 DASH，带上最佳音轨供支持方使用
   if (availableQualities[0]?.audioUrl) {

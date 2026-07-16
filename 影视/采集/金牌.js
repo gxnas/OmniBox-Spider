@@ -565,12 +565,10 @@ async function play(params, context) {
     return {
       parse: 0,
       urls,
-      flag,
       header,
-      danmaku: danmakuList,
-    };
+      danmaku: danmakuList};
   } catch (e) {
     await OmniBox.log("error", `[金牌][play] ${e.message}`);
-    return { parse: 0, urls: [], flag: String(params.flag || ""), header: {}, danmaku: [] };
+    return { parse: 0, urls: [], header: {}, danmaku: [] };
   }
 }

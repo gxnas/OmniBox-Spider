@@ -664,9 +664,7 @@ async function play(params, context) {
         return {
           parse: 0,
           urls: [{ name: "播放", url: staticUrl }],
-          flag: "Jellyfin",
-          header: { Referer: `${baseUrl}/` },
-        };
+          header: { Referer: `${baseUrl}/` }};
       }
     } catch (e) {
       logError("静态流不可用，回退 PlaybackInfo", e);
@@ -683,9 +681,7 @@ async function play(params, context) {
       return {
         parse: 0,
         urls: [{ name: "播放", url: playUrl }],
-        flag: "Jellyfin",
-        header: { Referer: `${baseUrl}/` },
-      };
+        header: { Referer: `${baseUrl}/` }};
     }
 
     throw new Error("无可用播放地址");
@@ -694,9 +690,7 @@ async function play(params, context) {
     return {
       parse: 1,
       urls: [],
-      flag: String(params.flag || "Jellyfin"),
       header: {},
-      msg: `播放错误: ${e.message}`,
-    };
+      msg: `播放错误: ${e.message}`};
   }
 }

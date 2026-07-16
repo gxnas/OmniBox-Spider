@@ -1419,19 +1419,15 @@ async function play(params, context) {
 
     return {
       urls: urlsResult,
-      flag: shareURL,
       header: header,
       parse: 0,
-      danmaku: finalDanmakuList,
-    };
+      danmaku: finalDanmakuList};
   } catch (error) {
     OmniBox.log("error", `播放接口失败: ${error.message}`);
     return {
       urls: [],
-      flag: params.flag || "",
       header: {},
-      danmaku: [],
-    };
+      danmaku: []};
   }
 }
 /**

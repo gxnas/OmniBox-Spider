@@ -598,12 +598,10 @@ async function play(params, context) {
         const header = playInfo.header || {};
         return {
           urls: urlsResult.filter(it => it.url),
-          flag: meta.shareURL,
           header,
           headers: header,
           parse: 0,
-          danmaku: playInfo.danmaku || [],
-        };
+          danmaku: playInfo.danmaku || []};
       } catch (e) {
         await OmniBox.log("warn", `[不太灵][play] 网盘播放解析失败 shareURL=${meta.shareURL}, fileId=${meta.fileId}, message=${e.message}`);
       }
@@ -617,18 +615,14 @@ async function play(params, context) {
         parse: 0,
         url: link,
         urls: [{ name: meta.displayName || meta.title || getSeedSourcePrefix(seedType) || "资源", url: link }],
-        flag: playFlag,
         header,
-        headers: header,
-      };
+        headers: header};
     }
 
     return {
       parse: 1,
       url: link,
-      urls: [{ name: meta.title || "资源页", url: link }],
-      flag: seedType || "resource",
-    };
+      urls: [{ name: meta.title || "资源页", url: link }]};
   } catch (e) {
     await OmniBox.log("error", `[不太灵][play] ${e.message}`);
     return { parse: 0, urls: [] };

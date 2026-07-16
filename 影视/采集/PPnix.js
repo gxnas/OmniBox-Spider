@@ -739,12 +739,10 @@ async function play(params, context) {
         OmniBox.log("info", `[play] 返回 tvbox 专用内联 m3u8: infoId=${infoId}, param=${param}, from=${from}, leanHeader=${shouldUseLeanHeader ? "yes" : "no"}, cookie=${cfCookie ? "yes" : "no"}, subtitles=${subtitles.length}`);
         return {
           urls: [{ name: episodeName, url: finalUrl }],
-          flag: "PPnix",
           header,
           parse: 0,
           danmaku: [],
-          subtitles,
-        };
+          subtitles};
       } catch (error) {
         OmniBox.log("warn", `[play] tvbox 内联 m3u8 失败，回退原始地址: ${error.message}`);
       }
@@ -758,12 +756,10 @@ async function play(params, context) {
         OmniBox.log("info", `[play] 返回重写 data-url: infoId=${infoId}, param=${param}, from=${from}, leanHeader=${shouldUseLeanHeader ? "yes" : "no"}, cookie=${cfCookie ? "yes" : "no"}, subtitles=${subtitles.length}`);
         return {
           urls: [{ name: episodeName, url: finalUrl }],
-          flag: "PPnix",
           header,
           parse: 0,
           danmaku: [],
-          subtitles,
-        };
+          subtitles};
       } catch (error) {
         OmniBox.log("warn", `[play] 官网链路重写失败，回退原始地址: ${error.message}`);
       }
@@ -772,15 +768,13 @@ async function play(params, context) {
     OmniBox.log("info", `[play] 返回原始 m3u8: infoId=${infoId}, param=${param}, from=${from}, leanHeader=${shouldUseLeanHeader ? "yes" : "no"}, cookie=${cfCookie ? "yes" : "no"}, subtitles=${subtitles.length}`);
     return {
       urls: [{ name: episodeName, url: sourceUrl }],
-      flag: "PPnix",
       header,
       parse: 0,
       danmaku: [],
-      subtitles,
-    };
+      subtitles};
   } catch (error) {
     OmniBox.log("error", `[play] 失败: ${error.message}`);
-    return { urls: [], flag: "PPnix", header: {}, parse: 1, danmaku: [] };
+    return { urls: [], header: {}, parse: 1, danmaku: [] };
   }
 }
 

@@ -1846,12 +1846,10 @@ async function play(params, context) {
     let finalDanmakuList = danmakuList && danmakuList.length > 0 ? danmakuList : playInfo.danmaku || [];
 
     return {
-      urls: urlsResult,
-      flag: shareURL, // 返回网盘分享链接作为flag
+      urls: urlsResult, // 返回网盘分享链接作为flag
       header: header,
       parse: 0,
-      danmaku: finalDanmakuList,
-    };
+      danmaku: finalDanmakuList};
   } catch (error) {
     OmniBox.log("error", `播放接口失败: ${error.message}`);
     if (error.stack) {
@@ -1859,10 +1857,8 @@ async function play(params, context) {
     }
     return {
       urls: [],
-      flag: params.flag || "",
       header: {},
-      danmaku: [],
-    };
+      danmaku: []};
   }
 }
 

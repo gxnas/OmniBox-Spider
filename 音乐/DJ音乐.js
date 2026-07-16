@@ -239,7 +239,6 @@ async function play(params, context) {
       await OmniBox.log("info", `[play] hit music.file -> ${url}`);
       return {
         urls: [{ name: "播放", url }],
-        flag,
         header: { "User-Agent": UA, Referer: HOST + "/" },
         parse: 0,
       };
@@ -251,7 +250,6 @@ async function play(params, context) {
       await OmniBox.log("info", `[play] hit direct media -> ${directM4a[0]}`);
       return {
         urls: [{ name: "播放", url: directM4a[0] }],
-        flag,
         header: { "User-Agent": UA, Referer: HOST + "/" },
         parse: 0,
       };
@@ -265,7 +263,6 @@ async function play(params, context) {
       await OmniBox.log("info", `[play] hit loose file -> ${url}`);
       return {
         urls: [{ name: "播放", url }],
-        flag,
         header: { "User-Agent": UA, Referer: HOST + "/" },
         parse: 0,
       };
@@ -275,6 +272,6 @@ async function play(params, context) {
     throw new Error(`未提取到播放地址，已尝试: ${tried.join(" | ")}`);
   } catch (e) {
     await OmniBox.log("error", `[play] ${e.message}`);
-    return { urls: [], flag: String(params?.flag || "DJ专线"), header: { "User-Agent": UA }, parse: 0 };
+    return { urls: [], header: { "User-Agent": UA }, parse: 0 };
   }
 }

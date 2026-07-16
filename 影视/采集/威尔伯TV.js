@@ -560,10 +560,8 @@ async function play(params, context) {
     if (!playUrl) return { parse: 0, urls: [] };
     const result = {
       parse: 0,
-      flag: String(params.flag || "威尔伯TV"),
       header: { Referer: HOST, Origin: HOST, "User-Agent": UA },
-      urls: [{ name: String(params.name || "正片"), url: playUrl }],
-    };
+      urls: [{ name: String(params.name || "正片"), url: playUrl }]};
     await log("info", "play 完成", { parse: result.parse, urlCount: result.urls.length, first: result.urls[0] || null });
     return result;
   } catch (e) {

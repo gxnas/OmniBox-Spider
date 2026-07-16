@@ -877,10 +877,8 @@ async function play(params) {
 
     let playResponse = {
       urls: urlsResult,
-      flag: flag,
       header: {},
-      parse: parse,
-    };
+      parse: parse};
 
     // 弹幕匹配（如果配置了弹幕API）
     if (DANMU_API && videoId) {
@@ -972,8 +970,7 @@ async function play(params) {
     OmniBox.log("error", `获取播放地址失败: ${error.message}`);
     return {
       urls: [],
-      flag: params.flag || "",
-      header: {},
-    };
+      header: {}
+  };
   }
 }

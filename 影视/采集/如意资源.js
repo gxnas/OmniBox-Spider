@@ -804,7 +804,7 @@ async function play(params, context) {
       } catch (sniffError) {}
     }
     
-    const response = { urls: [{ name: '默认线路', url: resolvedUrl }], flag: flag, header: resolvedHeader, parse: parse };
+    const response = { urls: [{ name: '默认线路', url: resolvedUrl }], header: resolvedHeader, parse: parse };
     
     if (ruyiConfig.danmuApi) {
       let fileName = '';

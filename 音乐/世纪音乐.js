@@ -875,21 +875,18 @@ async function play(params) {
     return {
       urls: [{ name: "播放", url: finalUrl }],
       parse,
-      flag,
       header: {
         "User-Agent": DEFAULT_HEADERS["User-Agent"],
-        Referer: `${HOST}/`,
+        Referer: `${HOST}/`
       },
-      ...(lrc ? { lrc } : {}),
-    };
+      ...(lrc ? { lrc } : {})};
   } catch (error) {
     logError("播放失败", error);
     return {
       urls: [],
       parse: 0,
-      flag,
-      header: {},
-    };
+      header: {}
+  };
   }
 }
 

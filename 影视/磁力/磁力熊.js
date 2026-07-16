@@ -416,12 +416,10 @@ async function play(params = {}) {
     await OmniBox.log("info", `[磁力熊][play] type=${seedType} urls=${urls.length}`);
     return {
       parse: 0,
-      flag: seedType,
       header: {},
-      urls,
-    };
+      urls};
   } catch (error) {
     await OmniBox.log("error", `[磁力熊][play] ${error.message}`);
-    return { parse: 0, flag: "magnet", header: {}, urls: [] };
+    return { parse: 0, header: {}, urls: [] };
   }
 }

@@ -2626,19 +2626,15 @@ async function play(params, context) {
         : playInfo.danmaku || [];
     return {
       urls,
-      flag: shareURL || flag || "",
       header: playInfo.header || {},
       parse: 0,
-      danmaku: finalDanmaku,
-    };
+      danmaku: finalDanmaku};
   } catch (error) {
     await OmniBox.log("error", `tmdb.js play 出错: ${error.message}`);
     return {
       urls: [],
-      flag: safeString(params?.flag || ""),
       header: {},
       parse: 0,
-      danmaku: [],
-    };
+      danmaku: []};
   }
 }

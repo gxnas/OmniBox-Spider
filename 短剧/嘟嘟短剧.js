@@ -228,11 +228,10 @@ async function play(params, context) {
     return {
       parse: 0,
       urls,
-      flag,
-      header: {},
-    };
+      header: {}
+  };
   } catch (e) {
     await OmniBox.log("error", `[嘟嘟短剧][play] ${e.message}`);
-    return { parse: 0, urls: [], flag: String(params.flag || ""), header: {} };
+    return { parse: 0, urls: [], header: {} };
   }
 }

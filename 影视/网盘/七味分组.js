@@ -3922,11 +3922,9 @@ async function play(params, context = {}) {
                     });
                     return {
                         urls: urlsResult,
-                        flag: shareURL,
                         header,
                         parse: 0,
-                        danmaku: finalDanmaku,
-                    };
+                        danmaku: finalDanmaku};
                 }
             } catch (error) {
                 logWarn("网盘文件播放失败，回退 push", { shareURL, fileId, flag, callerSource, error: error.message || String(error) });

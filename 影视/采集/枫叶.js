@@ -618,7 +618,7 @@ async function play(params = {}, context = {}) {
     }
 
     const playId = String(rawPlayId || "");
-    if (!playId) return { parse: 1, url: "", urls: [], header: {}, flag: "fengye" };
+    if (!playId) return { parse: 1, url: "", urls: [], header: {} };
     const playUrl = `${BASE_URL}/play/${playId}.html`;
 
     const playInfoPromise = (async () => {
@@ -638,9 +638,7 @@ async function play(params = {}, context = {}) {
           urls: [{ name: "播放", url: realVideoUrl }],
           header: finalHeaders,
           headers: finalHeaders,
-          flag: "fengye",
-          danmaku: [],
-        };
+          danmaku: []};
       }
 
       await OmniBox.log("warn", `[枫叶][play] fallback parse=1 playId=${playId}`);
@@ -650,9 +648,7 @@ async function play(params = {}, context = {}) {
         urls: [{ name: "播放页", url: playUrl }],
         header: finalHeaders,
         headers: finalHeaders,
-        flag: "fengye",
-        danmaku: [],
-      };
+        danmaku: []};
     })();
 
     const metadataPromise = (async () => {
@@ -770,6 +766,6 @@ async function play(params = {}, context = {}) {
     return playResult;
   } catch (e) {
     await OmniBox.log("error", `[枫叶][play] ${e.message}`);
-    return { parse: 1, url: "", urls: [], header: {}, flag: "fengye", danmaku: [] };
+    return { parse: 1, url: "", urls: [], header: {}, danmaku: [] };
   }
 }

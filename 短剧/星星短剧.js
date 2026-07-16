@@ -147,13 +147,12 @@ async function play(params, context) {
     if (!playId) throw new Error("playId 为空");
     return {
       urls: [{ name: "播放", url: playId }],
-      flag,
       header: { "User-Agent": UA },
       parse: 0
     };
   } catch (e) {
     await OmniBox.log("error", `[play] ${e.message}`);
-    return { url: "", flag: text(params?.flag || "短剧专线"), header: {} };
+    return { url: "", header: {} };
   }
 }
 

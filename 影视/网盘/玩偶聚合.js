@@ -1465,7 +1465,7 @@ async function play(params, context) {
     const drives = context?.drives || [];
     await OmniBox.log("info", `[play] flag=${flag}, playId=${playId}`);
 
-    if (!playId) return { urls: [], flag, header: {}, danmaku: [] };
+    if (!playId) return { urls: [], header: {}, danmaku: [] };
 
     if (playId.startsWith("link://")) {
       const baseId = playId.split("?")[0];
@@ -1485,7 +1485,7 @@ async function play(params, context) {
     }
 
     const parts = playId.split("|");
-    if (parts.length < 2) return { urls: [], flag, header: {}, danmaku: [] };
+    if (parts.length < 2) return { urls: [], header: {}, danmaku: [] };
 
     const shareURL = parts[0];
     const fileId = parts[1];
@@ -1641,13 +1641,11 @@ async function play(params, context) {
     await OmniBox.log("info", `[play] urls=${urls.length}, danmaku=${finalDanmakuList.length}, scrape=${ENABLE_SCRAPE ? "on" : "off"}`);
     return {
       urls,
-      flag: shareURL,
       header: header,
       parse: 0,
-      danmaku: finalDanmakuList,
-    };
+      danmaku: finalDanmakuList};
   } catch (error) {
     await OmniBox.log("error", `[play] ${error.message}`);
-    return { urls: [], flag: params.flag || "", header: {}, danmaku: [] };
+    return { urls: [], header: {}, danmaku: [] };
   }
 }

@@ -485,7 +485,7 @@ async function play(params, context) {
       const part = extractContainer(data)?.Metadata?.[0]?.Media?.[mi]?.Part?.[pi];
       if (part?.key) {
         logInfo("播放地址 (Part File)", { clientUrl });
-        return { parse: 0, urls: [{ name: "播放", url: `${clientUrl}${part.key}?X-Plex-Token=${token}` }], flag: "Plex", header: { Referer: `${clientUrl}/` } };
+        return { parse: 0, urls: [{ name: "播放", url: `${clientUrl}${part.key}?X-Plex-Token=${token}` }], header: { Referer: `${clientUrl}/` } };
       }
     }
 
@@ -494,7 +494,7 @@ async function play(params, context) {
       const key = extractContainer(epData)?.Metadata?.[0]?.Media?.[0]?.Part?.[0]?.key;
       if (key) {
         logInfo("播放地址 (Episode)", { clientUrl });
-        return { parse: 0, urls: [{ name: "播放", url: `${clientUrl}${key}?X-Plex-Token=${token}` }], flag: "Plex", header: { Referer: `${clientUrl}/` } };
+        return { parse: 0, urls: [{ name: "播放", url: `${clientUrl}${key}?X-Plex-Token=${token}` }], header: { Referer: `${clientUrl}/` } };
       }
     }
 
@@ -503,13 +503,13 @@ async function play(params, context) {
       const key = extractContainer(data)?.Metadata?.[0]?.Media?.[0]?.Part?.[0]?.key;
       if (key) {
         logInfo("播放地址 (通用)", { clientUrl });
-        return { parse: 0, urls: [{ name: "播放", url: `${clientUrl}${key}?X-Plex-Token=${token}` }], flag: "Plex", header: { Referer: `${clientUrl}/` } };
+        return { parse: 0, urls: [{ name: "播放", url: `${clientUrl}${key}?X-Plex-Token=${token}` }], header: { Referer: `${clientUrl}/` } };
       }
     }
 
     throw new Error("无法获取播放地址");
   } catch (e) {
     logError("播放解析失败", e);
-    return { parse: 1, urls: [], flag: "Plex", header: {}, msg: `播放错误: ${e.message}` };
+    return { parse: 1, urls: [], header: {}, msg: `播放错误: ${e.message}` };
   }
 }

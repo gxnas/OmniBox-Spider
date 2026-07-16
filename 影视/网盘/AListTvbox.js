@@ -722,10 +722,8 @@ async function play(params, context) {
     if (/\.(m3u8|mp4|rmvb|avi|wmv|flv|mkv|webm|mov|m3u|mp3)(?!\w)/i.test(mainPlayId)) {
       return {
         urls: [{ name: "播放", url: mainPlayId }],
-        flag: flag,
         header: {},
-        parse: 0,
-      };
+        parse: 0};
     }
 
     if (isValidUrl(mainPlayId)) {
@@ -870,19 +868,15 @@ async function play(params, context) {
 
     return {
       urls,
-      flag: flag,
       header,
       parse: 0,
-      danmaku: danmakuList,
-    };
+      danmaku: danmakuList};
   } catch (error) {
     OmniBox.log("error", `播放接口失败: ${error.message}`);
     return {
       urls: [],
-      flag: params.flag || "",
       header: {},
-      danmaku: [],
-    };
+      danmaku: []};
   }
 }
 

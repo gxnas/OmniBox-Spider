@@ -417,7 +417,6 @@ async function play(params) {
                 logInfo("网盘播放成功", { shareURL, fileId, lineCount: urls.length });
                 return {
                     urls,
-                    flag: shareURL,
                     header: playInfo?.header || {},
                     parse: 0,
                     danmaku: playInfo?.danmaku || []
@@ -441,7 +440,6 @@ async function play(params) {
                 logInfo("分享链接兜底播放成功", { shareURL, fileId, lineCount: urls.length });
                 return {
                     urls,
-                    flag: shareURL,
                     header: playInfo?.header || {},
                     parse: 0,
                     danmaku: playInfo?.danmaku || []

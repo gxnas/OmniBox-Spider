@@ -1024,7 +1024,6 @@ async function play(params) {
                     }));
                     return {
                         urls: urlsResult,
-                        flag: shareURL,
                         header: playInfo?.header || {},
                         parse: 0,
                         danmaku: playInfo?.danmaku || []

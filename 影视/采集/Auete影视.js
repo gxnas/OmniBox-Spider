@@ -423,15 +423,13 @@ async function play(params, context) {
 
     const response = {
       parse: 0,
-      flag: meta.source || pn || "播放",
       header: PLAY_HEADERS,
       urls: [
         {
           name: meta.episodeName || "播放",
-          url: directUrl,
+          url: directUrl
         },
-      ],
-    };
+      ]};
     logInfo("播放解析完成", { playPath, pn, hasDirectUrl: Boolean(directUrl) });
     return response;
   } catch (error) {

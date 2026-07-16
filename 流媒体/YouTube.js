@@ -533,7 +533,7 @@ async function play(params = {}) {
   const playId = params.playId || params.id || "";
   const flag = params.flag || "";
 
-  if (!playId) return { urls: [], parse: 1, flag };
+  if (!playId) return { urls: [], parse: 1 };
 
   logInfo("播放解析", { playId });
 
@@ -544,9 +544,7 @@ async function play(params = {}) {
       return {
         urls: [{ name: "YouTube播放列表", url: vid }],
         parse: 0,
-        header: { "User-Agent": UA },
-        flag,
-      };
+        header: { "User-Agent": UA }};
     }
 
     const urlMatch = vid.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([a-zA-Z0-9_-]{11})/);
@@ -556,9 +554,7 @@ async function play(params = {}) {
       return {
         urls: [{ name: "播放", url: vid }],
         parse: 0,
-        header: { "User-Agent": UA },
-        flag,
-      };
+        header: { "User-Agent": UA }};
     }
   }
 
@@ -567,27 +563,21 @@ async function play(params = {}) {
     return {
       urls: [{ name: "YouTube播放列表", url }],
       parse: 0,
-      header: { "User-Agent": UA },
-      flag,
-    };
+      header: { "User-Agent": UA }};
   }
 
   if (!/[a-zA-Z0-9_-]{11}/.test(vid)) {
     return {
       urls: [{ name: "播放", url: vid }],
       parse: 0,
-      header: { "User-Agent": UA },
-      flag,
-    };
+      header: { "User-Agent": UA }};
   }
 
   const watchUrl = `https://www.youtube.com/watch?v=${vid}`;
   return {
     urls: [{ name: "YouTube", url: watchUrl }],
     parse: 0,
-    header: { "User-Agent": UA },
-    flag,
-  };
+    header: { "User-Agent": UA }};
 }
 
 module.exports = { home, category, search, detail, play };
